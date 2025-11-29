@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.mcajusol.pc01"
+    namespace = "com.mcajusol.pc02"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.mcajusol.pc01"
+        applicationId = "com.mcajusol.pc02"
         minSdk = 28
         targetSdk = 36
         versionCode = 1

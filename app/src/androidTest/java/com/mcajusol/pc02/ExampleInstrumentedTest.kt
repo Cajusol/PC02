@@ -1,4 +1,4 @@
-package com.mcajusol.pc01
+package com.mcajusol.pc02
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

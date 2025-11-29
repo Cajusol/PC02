@@ -1,4 +1,4 @@
-package com.mcajusol.pc01.data.model
+package com.mcajusol.pc02.data.model
 
 data class MonedaModel(
     val moneda: String,

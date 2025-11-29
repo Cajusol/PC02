@@ -1,4 +1,4 @@
-package com.mcajusol.pc01.ui.theme
+package com.mcajusol.pc02.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

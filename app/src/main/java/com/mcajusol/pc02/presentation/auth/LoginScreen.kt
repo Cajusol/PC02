@@ -1,4 +1,4 @@
-package com.mcajusol.pc01.presentation.auth
+package com.mcajusol.pc02.presentation.auth
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
@@ -18,7 +18,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.mcajusol.pc01.data.remote.firebase.FirebaseAuthManager
+import com.mcajusol.pc02.data.remote.firebase.FirebaseAuthManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

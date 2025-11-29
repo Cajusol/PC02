@@ -1,14 +1,12 @@
-package com.mcajusol.pc01.data.remote.firebase
+package com.mcajusol.pc02.data.remote.firebase
 
 import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
 import java.time.LocalDateTime
 
-private val FirebaseAuthManager.firestore: Any
+
 
 object FirebaseAuthManager {
     private val auth = FirebaseAuth.getInstance()
@@ -38,7 +36,7 @@ object FirebaseAuthManager {
                 "monto" to monto,
                 "createdAt" to LocalDateTime.now()
             )
-            firestore.collection("monedas").document(uid).set(monedaResultado).await()
+            filestore.collection("monedas").document(uid).set(monedaResultado).await()
             Result.success(Unit)
 
 

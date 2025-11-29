@@ -1,4 +1,4 @@
-package com.mcajusol.pc01
+package com.mcajusol.pc02
 
 import org.junit.Test
 

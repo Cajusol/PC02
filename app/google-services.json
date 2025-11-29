@@ -7,28 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:9866725639:android:66d2761b7df210dd909da2",
+        "mobilesdk_app_id": "1:9866725639:android:e4a4f75816aa5f08909da2",
         "android_client_info": {
-          "package_name": "com.mcajusol.pc01"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyAUEfvOdvQKbECh9BdYX6VpmoC8G73vmL4"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:9866725639:android:217db377babd8ce9909da2",
-        "android_client_info": {
-          "package_name": "dev.luischang.appdpa"
+          "package_name": "com.mcajusol.pc02"
         }
       },
       "oauth_client": [],

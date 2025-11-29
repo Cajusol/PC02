@@ -1,4 +1,4 @@
-package com.mcajusol.pc01.presentation.auth.navigation
+package com.mcajusol.pc02.presentation.auth.navigation
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,7 +19,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.mcajusol.pc01.data.model.MonedaModel
+import com.mcajusol.pc02.data.model.MonedaModel
 
 
 val mockMonedas = listOf(
