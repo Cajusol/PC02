@@ -37,25 +37,34 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
+import com.mcajusol.pc02.data.remote.api.ManoCartas
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ApiScreen(viewModel: ApiViewModel = viewModel()){
 
-    val countries by viewModel.countries.collectAsState()
-    val selectedCountry by viewModel.selectedCountry.collectAsState()
-    val teams by viewModel.teams.collectAsState()
+
+    val manoCartas by viewModel.manoCartas.collectAsState()
+
+
+    val selectedManoCarta by viewModel.selecteManoCarta.collectAsState()
+
+
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
+
 
     var expanded by remember {mutableStateOf(false)}
     val context = LocalContext.current
 
     Column (modifier = Modifier.fillMaxSize().padding(16.dp))
     {
-        Text("Equipos de fútbol por país"
+        Text("Blackjack"
             , style = MaterialTheme.typography.titleLarge)
+
+
+
 
         Spacer(modifier= Modifier.height(16.dp))
 
@@ -64,17 +73,17 @@ fun ApiScreen(viewModel: ApiViewModel = viewModel()){
                 onClick = { expanded = true },
                 modifier = Modifier.fillMaxWidth()
             ) {
-                Text(selectedCountry?.name ?: "Seleccionar país")
+                Text(selectedManoCarta?.deck_id ?: "Seleccionar Blackjack")
             }
             DropdownMenu(expanded = expanded
                 , onDismissRequest = {expanded= false}){
 
-                countries.forEach { country ->
+                manoCartas.forEach { manoCarta ->
                     DropdownMenuItem(
-                        text = {Text(country.name)},
+                        text = {Text(manoCarta.deck_id)},
                         onClick = {
                             expanded = false
-                            viewModel.onCountrySelected(country)
+                            viewModel.onManoCartaSelected(manoCarta)
                         }
                     )
                 }
@@ -86,40 +95,7 @@ fun ApiScreen(viewModel: ApiViewModel = viewModel()){
             }else if(errorMessage!=null){
                 Text(errorMessage!!, color = MaterialTheme.colorScheme.error)
             } else {
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(12.dp))
-                {
-                    items(teams) { wrapper ->
-                        Card(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(vertical = 4.dp)
-                                .clickable {
-                                    val query = wrapper.team.name
-                                    val intent =
-                                        Intent(
-                                            Intent.ACTION_VIEW,
-                                            Uri.parse("https://www.google.com/search?q=$query")
-                                        )
-                                    context.startActivity(intent)
-                                }
-                        ) {
-                            Row(modifier = Modifier.padding(12.dp))
-                            {
-                                Image(painter=
-                                    rememberAsyncImagePainter(wrapper.team.logo),
-                                    contentDescription = wrapper.team.name,
-                                    modifier = Modifier.size(64.dp),
-                                    contentScale = ContentScale.Crop
-                                )
-                                Spacer(modifier = Modifier.width(12.dp))
-                                Column{
-                                    Text(wrapper.team.name, style = MaterialTheme.typography.titleMedium)
-                                    Text("Fundado el: ${wrapper.team.founded ?: "Desconocido"}")
-                                }
-                            }
-                        }
-                    }
-                }
+                Text(errorMessage!!, color = MaterialTheme.colorScheme.error)
             }
 
 

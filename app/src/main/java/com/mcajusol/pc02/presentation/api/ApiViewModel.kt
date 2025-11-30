@@ -3,36 +3,39 @@ package com.mcajusol.pc02.presentation.api
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mcajusol.pc02.data.remote.api.Country
+import com.mcajusol.pc02.data.remote.api.ManoCartas
 import com.mcajusol.pc02.data.remote.api.RetrofitInstance
-import com.mcajusol.pc02.data.remote.api.TeamWrapper
 
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class ApiViewModel: ViewModel() {
-    private val _countries = MutableStateFlow<List<Country>>(emptyList())
-    val countries: StateFlow<List<Country>> = _countries
-    private val _selecteCountry = MutableStateFlow<Country?>(null)
-    val selectedCountry: StateFlow<Country?> =_selecteCountry
-    private val _teams = MutableStateFlow<List<TeamWrapper>>(emptyList())
-    val teams: StateFlow<List<TeamWrapper>> = _teams
+
+
+    private val _manoCartas = MutableStateFlow<List<ManoCartas>>(emptyList())
+    val manoCartas: StateFlow<List<ManoCartas>> = _manoCartas
+
+
+    private val _selecteManoCarta = MutableStateFlow<ManoCartas?>(null)
+    val selecteManoCarta: StateFlow<ManoCartas?> =_selecteManoCarta
+
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
     private val _errorMessage = MutableStateFlow<String?>(null)
     val errorMessage: StateFlow<String?> = _errorMessage
 
+
     init {
-        loadCountries()
+        loadManoCartas()
     }
 
-    fun loadCountries() {
+
+    fun loadManoCartas() {
         viewModelScope.launch {
             _isLoading.value = true
             try {
-                val response = RetrofitInstance.api.getCountries()
-                _countries.value = response.response.sortedBy { it.name }
+                val _manoCartas = RetrofitInstance.api.getManoCartas()
                 _errorMessage.value = null
             } catch (e: Exception){
                 _errorMessage.value = "Error al obtener los países: ${e.message}"
@@ -42,24 +45,12 @@ class ApiViewModel: ViewModel() {
         }
     }
 
-    fun onCountrySelected(country: Country){
-        _selecteCountry.value = country
-        loadTeamsByCountry(country.name)
+
+
+    fun onManoCartaSelected(manoCarta: ManoCartas){
+        _selecteManoCarta.value = manoCarta
+
     }
 
-    private fun loadTeamsByCountry(countryName: String){
-        viewModelScope.launch {
-            _isLoading.value = true
-            try {
-                val response = RetrofitInstance.api.getTeamsByCountry(countryName)
-                _teams.value = response.response
-                _errorMessage.value = null
-            } catch (e: Exception){
-                _errorMessage.value = "Error al obtener los equipos por país: ${e.message}"
-                _teams.value = emptyList()
-            }finally {
-                _isLoading.value = false
-            }
-        }
-    }
+
 }

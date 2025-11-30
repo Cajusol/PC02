@@ -7,22 +7,18 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 import java.util.concurrent.TimeUnit
 
-private const val BASE_URL = "https://v3.football.api-sports.io/"
-private const val API_FOOTBALL_KEY = "b6177a72452bab38c2942e5801fc7e39"
+private const val BASE_URL = "https://deckofcardsapi.com/api/deck/"
+
 
 object RetrofitInstance {
 
-    private val client = OkHttpClient.Builder()
+    private val client =   OkHttpClient.Builder()
         .retryOnConnectionFailure(true)
         .connectTimeout(30, TimeUnit.SECONDS)
         .readTimeout(30, TimeUnit.SECONDS)
         .writeTimeout(30, TimeUnit.SECONDS)
-        .addInterceptor(Interceptor{ chain->
-            val request = chain.request().newBuilder()
-                .addHeader("x-apisports-key", API_FOOTBALL_KEY)
-                .build()
-            chain.proceed(request)
-        }).build()
+
+        .build()
 
     val api: ApiService by lazy {
         Retrofit.Builder()
